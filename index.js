@@ -180,7 +180,7 @@ app.post('/signup', async (req, res, next) => {
 });
 
 
-let PORT = process.env.PORT || 4030;
+let PORT = process.env.PORT || 3000;
 app.listen(PORT, (err) => {
     console.log('App starting on port', PORT)
 });

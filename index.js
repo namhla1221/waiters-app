@@ -20,9 +20,9 @@ app.use(flash());
 const pg = require('pg');
 const Pool = pg.Pool;
 
-// let useSSL = false;
+let useSSL = false;
 if (process.env.DATABASE_URL) {
-    // useSSL = true;
+    useSSL = true;
 }
 
 const connectionString = process.env.DATABASE_URL || 'postgresql://namz:namhla1221@localhost:5432/my_waiters'

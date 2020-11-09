@@ -29,7 +29,7 @@ const connectionString = process.env.DATABASE_URL || 'postgresql://namz:namhla12
 
 const pool = new Pool({
     connectionString,
-    ssl: useSSL
+    // ssl: useSSL
 });
 let waiter = Waiter(pool);
 
@@ -180,7 +180,7 @@ app.post('/signup', async (req, res, next) => {
 });
 
 
-let PORT = process.env.PORT || 3000;
+let PORT = process.env.PORT || 1030;
 app.listen(PORT, (err) => {
     console.log('App starting on port', PORT)
 });

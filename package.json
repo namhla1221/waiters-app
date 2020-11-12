@@ -13,6 +13,7 @@
     "express-handlebars": "^5.2.0",
     "express-session": "^1.17.1",
     "flash-message": "^2.0.1",
+    "gulp": "^4.0.2",
     "package-json": "^6.5.0",
     "pg": "^8.4.2"
   },

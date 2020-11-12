@@ -19,12 +19,12 @@ foreign key (weekday_id) references weekdays(id)
 );
 
 -- --  INSERT data into waiter
-INSERT INTO waiterDB (username,full_name,position) VALUES ('Bomza','Bomkazi boss','waiter');
-INSERT INTO waiterDB (username,full_name,position) VALUES ('Mr Mthi','Hlela Mthi','waiter');
-INSERT INTO waiterDB (username,full_name,position) VALUES ('Ms Mthi','Mthi','waiter');
-INSERT INTO waiterDB (username,full_name,position) VALUES ('Mr Charl','Charl','waiter');
-INSERT INTO waiterDB (username,full_name,position) VALUES ('Ms Nyumb','Anazo Nyumb ','waiter');
-INSERT INTO waiterDB (username,full_name,position) VALUES ('Ms Nyumb','Anazo Nyumb','Admin');
+
+INSERT INTO waiterDB (username,full_name,position) VALUES ('chumaG','chuma','waiter');
+INSERT INTO waiterDB (username,full_name,position) VALUES ('thatoL','thato','waiter');
+INSERT INTO waiterDB (username,full_name,position) VALUES ('simaM','simamkele','waiter');
+INSERT INTO waiterDB (username,full_name,position) VALUES ('yongs','yongama','waiter');
+
 -- -- INSERT WEEKDAYS
 INSERT INTO weekdays (dayName) VALUES ('Sunday');
 INSERT INTO weekdays (dayName) VALUES ('Monday');
@@ -33,6 +33,7 @@ INSERT INTO weekdays (dayName) VALUES ('Wednesday');
 INSERT INTO weekdays (dayName) VALUES ('Thursday');
 INSERT INTO weekdays (dayName) VALUES ('Friday');
 INSERT INTO weekdays (dayName) VALUES ('Saturday');
+
 -- selcting a shift
 INSERT INTO dayShifts (waiter_id,weekday_id) VALUES(1,1);
 INSERT INTO dayShifts (waiter_id,weekday_id) VALUES(1,2);

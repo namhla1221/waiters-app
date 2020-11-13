@@ -12,7 +12,7 @@ const connectionString = process.env.DATABASE_URL || 'postgresql://namz:namhla12
 
 const pool = new Pool({
   connectionString,
-  ssl: useSSL
+  
 })
 
  
@@ -95,33 +95,21 @@ describe('Select a shift', () => {
     days: ["Monday", "Thursday", "Wednesday"]
   }
   await waiter.dayShift(shift);
-  assert.deepEqual(await waiter.allShifts(), [{
-    dayname: 'Monday',
-    "full_name": "Bomkazi"
-  }, {
-    dayname: 'Thursday',
-    "full_name": "Bomkazi"
-
-  }, {
-    
-    dayname: 'Wednesday',
-    "full_name": "Bomkazi"
-  }]);
+  assert.deepEqual(await waiter.allShifts(),
+   [{dayname: 'Monday', "full_name": "Bomkazi"}, 
+   {dayname: 'Thursday',"full_name": "Bomkazi"},
+   {dayname: 'Wednesday',"full_name": "Bomkazi"}
+]);
 })
 });
 
 describe('Get all stored shifts', () => {
   it('should return a list of stored shifts', async () => {
   assert.deepEqual(await waiter.allShifts(),
-   [{
-    dayname: 'Monday',
-    "full_name": "Bomkazi"}, {
-    dayname: 'Thursday',
-    "full_name": "Bomkazi"
-  }, {
-    dayname: 'Wednesday',
-    "full_name": "Bomkazi"
-  }]);
+   [{dayname: 'Monday',"full_name": "Bomkazi"}, 
+   {dayname: 'Thursday',"full_name": "Bomkazi"},
+   {dayname: 'Wednesday',"full_name": "Bomkazi"}
+]);
 })
 });
 

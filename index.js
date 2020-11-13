@@ -1,3 +1,4 @@
+"use strict";
 const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
@@ -34,7 +35,7 @@ const connectionString = process.env.DATABASE_URL || 'postgresql://namz:namhla12
 
 const pool = new Pool({
     connectionString,
-    ssl: useSSL
+    // ssl: useSSL
 });
 let waiter = Waiter(pool);
 

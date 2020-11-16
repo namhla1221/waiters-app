@@ -67,17 +67,17 @@ app.get('/logout', (req, res) => {
     res.render('sigin');
 });
 
-const checkAccess = async (req, res, next) => {
-    console.log(req.session.user_name, req.params.username);
-    if (req.session.user_name !== req.params.username) {
-        req.flash('access', "access denied");
-        res.redirect('/');
-    } else {
-        next();
-    }
-}
+// const checkAccess = async (req, res, next) => {
+//     console.log(req.session.user_name, req.params.username);
+//     if (req.session.user_name !== req.params.username) {
+//         req.flash('access', "access denied");
+//         res.redirect('/');
+//     } else {
+//         next();
+//     }
+// }
 
-app.post('/sigin', checkAccess, async (req, res, next) => {
+app.post('/sigin', async (req, res, next) => {
     const { job_Type, siginUsername } = req.body;
     let username = siginUsername;
     try {
@@ -192,4 +192,3 @@ app.post('/signup', async (req, res, next) => {
 app.listen(PORT, (err) => {
     console.log('App starting on port', PORT)
 });
-

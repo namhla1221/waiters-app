@@ -1,3 +1,6 @@
+ 
+drop table if exists dayShifts, waiterDB, weekdays;
+
 create table waiterDB(
 id serial not null primary key,
 username text not null,
@@ -20,10 +23,11 @@ foreign key (weekday_id) references weekdays(id)
 
 -- --  INSERT data into waiter
 
-INSERT INTO waiterDB (username,full_name,position) VALUES ('chumaG','chuma','waiter');
-INSERT INTO waiterDB (username,full_name,position) VALUES ('thatoL','thato','waiter');
-INSERT INTO waiterDB (username,full_name,position) VALUES ('simaM','simamkele','waiter');
-INSERT INTO waiterDB (username,full_name,position) VALUES ('yongs','yongama','waiter');
+INSERT INTO waiterDB (username,full_name,position) VALUES ('Vee','Vuyokazi','waiter');
+INSERT INTO waiterDB (username,full_name,position) VALUES ('Sinono','Sinovuyo','waiter');
+INSERT INTO waiterDB (username,full_name,position) VALUES ('Njunju','Nwabisa','waiter');
+INSERT INTO waiterDB (username,full_name,position) VALUES ('Bomza','Bomkazi','waiter');
+
 
 -- -- INSERT WEEKDAYS
 INSERT INTO weekdays (dayName) VALUES ('Sunday');

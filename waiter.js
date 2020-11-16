@@ -16,7 +16,7 @@ module.exports = Waiter = (pool) => {
                 return found.rows[0].position;
              } 
             else {
-                return false;
+                return true;
             }
         }
     }
@@ -34,7 +34,6 @@ module.exports = Waiter = (pool) => {
             selectedShift.forEach(days => {
                 let found = days.dayname;
                 if (current.dayname === found) {
-                    current.checked = true;
                     current.checked = true;
                 }
             })
@@ -134,12 +133,6 @@ module.exports = Waiter = (pool) => {
         let clear = await pool.query('DELETE FROM dayShifts');
         return clear.rows;
     }
-
-    //  const clear() {
-    //   let clear =  await pool.query('DELETE  FROM dayShifts');
-    //   return clear.rows;
-    // }
-
     const findSelectedDays = async (username) => {
         let foundDays = await pool.query('SELECT dayName FROM dayShifts JOIN waiterDB ON waiterDB.id = dayShifts.waiter_id JOIN weekdays ON weekdays.id = dayShifts.weekday_id WHERE username=$1', [username]);
         return foundDays.rows;

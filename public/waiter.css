@@ -1,11 +1,26 @@
 h1 {
     text-align: center;
     margin-bottom: 5rem;
-    color: #00b5ad
+    color: #0d0e0d;
+   font-size:64px;
+    
+}
+.bomza{
+
+ text-align: center;
+ margin: 300px;
+padding: 12px;
+
+
 }
 
 body {
     background-color: #DADADA;
+    background-image: url("namhla.jpg");
+}
+h3 {
+    font-size:36px;
+    text-align: center;
 }
 
 body>.grid {
@@ -20,7 +35,7 @@ body>.grid {
     margin-top: 5%;
     padding: 1rem;
     width: 100%;
-    border: 1px solid #00b5ad;
+    border: 3px solid #070707;
 }
 
 footer {
@@ -83,7 +98,7 @@ span {
 }
 
 #shift {
-    background-color: #4CAF50;
+    background-color: rgb(16, 17, 17);
     border: none;
     color: white;
     padding: 15px 32px;
@@ -108,7 +123,7 @@ span {
 }
 
 .box {
-    border: 1px solid #00b5ad;
+    border: 3px solid blueviolet;
     border-radius: 2px;
     min-height: 300px;
     padding: 4px;
@@ -160,7 +175,7 @@ ul {
 #weekdays {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    width: 99%;
 }
 
 #weekdays td,
@@ -181,7 +196,7 @@ ul {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #00b5ad;
+    background-color: #171818;
     color: white;
 }
 

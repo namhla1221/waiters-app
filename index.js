@@ -67,16 +67,8 @@ app.get('/logout', (req, res) => {
     res.render('sigin');
 });
 
-// const checkAccess = async (req, res, next) => {
-//     console.log(req.session.user_name, req.params.username);
-//     if (req.session.user_name !== req.params.username) {
-//         req.flash('access', "access denied");
-//         res.redirect('/');
-//     } else {
-//         next();
-//     }
-// }
-
+//this route is for sign-in with the username.
+//I t allows users to sign-in and choose job waiter if the user is waiter
 app.post('/sigin', async (req, res, next) => {
     const { job_Type, siginUsername } = req.body;
     let username = siginUsername;
@@ -87,6 +79,7 @@ app.post('/sigin', async (req, res, next) => {
     }
 });
 
+//this is the home page where the user is allowed to create username if it's their first time .
 const logIn = async (username, job_Type ,req,res) => {
     let found = await waiter.foundUser(username, job_Type);
     if (found === 'waiter') {
@@ -115,6 +108,7 @@ app.get('/waiters/:username', async (req, res, next) => {
     }
 })
 
+//will allow users to select their shifts according to the days they willing to work 
 app.post('/waiters/:username', async (req, res, next) => {
     try {
         let username = req.params.username;
@@ -134,7 +128,7 @@ app.post('/waiters/:username', async (req, res, next) => {
         next(error);
     }
 })
-
+//this route is for admin to check the schedule of the waiters .
 app.get('/days', async (req, res, next) => {
     try {
         await waiter.getdays();

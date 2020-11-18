@@ -59,17 +59,17 @@ app.engine('handlebars', exphbs({
 
 app.set('view engine', 'handlebars');
 
-app.get('/', (req, res) => {
+app.get('/', async function(req, res){
     res.render('sigin');
 });
 
-app.get('/logout', (req, res) => {
+app.get('/logout', async function(req, res) {
     res.render('sigin');
 });
 
 //this route is for sign-in with the username.
 //I t allows users to sign-in and choose job waiter if the user is waiter
-app.post('/sigin', async (req, res, next) => {
+app.post('/sigin', async function(req, res) {
     const { job_Type, siginUsername } = req.body;
     let username = siginUsername;
     try {
@@ -80,7 +80,7 @@ app.post('/sigin', async (req, res, next) => {
 });
 
 //this is the home page where the user is allowed to create username if it's their first time .
-const logIn = async (username, job_Type ,req,res) => {
+const logIn = async function  (username, job_Type ,req,res){
     let found = await waiter.foundUser(username, job_Type);
     if (found === 'waiter') {
         req.session.user_name = username;
@@ -88,12 +88,12 @@ const logIn = async (username, job_Type ,req,res) => {
     } else if (found === 'Admin') {
         res.redirect('days');
     } else {
-        req.flash('error', 'oops! Unable login please provide correct details');
+        req.flash('error', ' Please enter your details');
         res.redirect('/');
     }
 }
 
-app.get('/waiters/:username', async (req, res, next) => {
+app.get('/waiters/:username', async function (req, res, next) {
     try {
         let username = req.params.username;
         let foundUser = await waiter.getUsername(username);
@@ -109,7 +109,7 @@ app.get('/waiters/:username', async (req, res, next) => {
 })
 
 //will allow users to select their shifts according to the days they willing to work 
-app.post('/waiters/:username', async (req, res, next) => {
+app.post('/waiters/:username', async function (req, res, next)  {
     try {
         let username = req.params.username;
         let weekdays = await waiter.getdays(username);
@@ -119,7 +119,7 @@ app.post('/waiters/:username', async (req, res, next) => {
                 username: username,
                 days: Array.isArray(req.body.dayname) ? req.body.dayname : [req.body.dayname]
             }
-            req.flash('info', 'Succesfully added shift(s)');
+            req.flash('info', 'Succesfully added shifts');
             await waiter.dayShift(shift);
             res.redirect('/waiters/' + username);
         }
@@ -129,7 +129,7 @@ app.post('/waiters/:username', async (req, res, next) => {
     }
 })
 //this route is for admin to check the schedule of the waiters .
-app.get('/days', async (req, res, next) => {
+app.get('/days', async function (req, res, next) {
     try {
         await waiter.getdays();
         let storedShifts = await waiter.groupByDay();
@@ -141,17 +141,17 @@ app.get('/days', async (req, res, next) => {
     }
 })
 
-app.get('/clear', async (req, res, next) => {
+app.get('/clear', async function (req, res, next)  {
     try {
         await waiter.clearShifts();
-        req.flash('info', 'You have Succesfully deleted shift');
+        req.flash('info', 'You have deleted shift');
         res.redirect('days');
     } catch (error) {
         next(error)
     }
 })
 
-app.get('/signup', async (req, res, next) => {
+app.get('/signup', async function (req, res, next){
     try {
         res.render('signup');
     } catch (e) {
@@ -159,18 +159,14 @@ app.get('/signup', async (req, res, next) => {
     }
 })
 
-app.post('/signup', async (req, res, next) => {
+app.post('/signup', async function (req, res, next){
     try {
         const { full_name, username, job_Type } = req.body;
         if (full_name !== undefined && username !== undefined
             && job_Type !== undefined && job_Type !== '') {
             if (await waiter.add_waiter(username, full_name, job_Type)) {
                 req.flash('info', 'user is succesfully registered');
-            } else {
-                req.flash('error', 'wrong details');
-            }
-        } else {
-            req.flash('error', 'please make sure you fill all the input fields');
+            } 
         }
         // auto login
         await logIn(username, job_Type,req,res);
@@ -183,6 +179,6 @@ app.post('/signup', async (req, res, next) => {
 
 
 
-app.listen(PORT, (err) => {
+app.listen(PORT, async function (err){
     console.log('App starting on port', PORT)
 });

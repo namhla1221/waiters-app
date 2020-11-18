@@ -2,26 +2,20 @@
 
 <h3>Booked shifts</h3>
 
-  {{!-- <div class="topClear">
-      
-        <button type="submit" id="clear"><i class="trash icon"></i></button>
-         </a> 
-  </div> --}}
 <div class="box ">
-<div class="ui computer reversed half width grid moveDown">
     <div class=" rows moveDown">
         <div class="two row">
             {{#each storedShifts}}
             <ul id="shiftdays" >
                 <h6>{{day}}</h6>
                 {{#each Waiters}}
-                <li class="{{../color}}">{{this}}</li>
+                <li class="{{../colours}}">{{this}}</li>
                 {{/each}}
             </ul>
             {{/each}}
         </div>
     </div>
-</div>
+ </div>
 </div>
 
  

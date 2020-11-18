@@ -8,8 +8,8 @@ h1 {
 .bomza{
 
  text-align: center;
- margin: 300qpx;
-padding: 12px;
+ margin: 150px;
+padding: 150px;
 
 
 }
@@ -17,6 +17,8 @@ padding: 12px;
 body {
     background-color: #DADADA;
     background-image: url("namhla.jpg");
+    background-size: cover;
+
 }
 h3 {
     font-size:36px;
@@ -164,8 +166,8 @@ ul {
     background-color: #4caf50;
 }
 
-.blue {
-    background-color: lightblue;
+.red {
+    background-color: red;
 }
 
 .orange {
@@ -205,5 +207,6 @@ ul {
         max-width: 200px;
     }
 }
+
 
 

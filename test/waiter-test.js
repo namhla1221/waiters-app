@@ -31,26 +31,7 @@ describe('The Add function  add waiters', function () {
   });
 });
 
-describe('Select a shift', function () {
-  beforeEach(async function () {
-    await pool.query('DELETE FROM dayShifts');
-  });
-  it('should a shift based on  username and dayName', async function () {
-    let shift = {
-      username: 'Vee',
-      days: ["Monday", "Wednesday", "Thursday"]
-    }
-    await waiter.dayShift(shift);
-    assert.deepEqual(await waiter.allShifts(), [{
-      dayname: 'Monday',
-      "full_name": "Vuyokazi"}, {
-      dayname: 'Wednesday',
-      "full_name": "Vuyokazi"},
-      {dayname: 'Thursday',
-      "full_name": "Vuyokazi"
-    }]);
-  })
-});
+
 
 describe('The weekdays function',  function (){
   beforeEach(async  function () {
@@ -94,7 +75,7 @@ describe('waiter should Select a shift', function () {
     await pool.query('DELETE FROM waiterDB');
     await pool.query('DELETE FROM weekdays');
   });
-  
+
   it('should allow user to add shift', async function () {
     await waiter.weekDays();
     await waiter.add_waiter("Vee", "Vuyokazi", "waiter");
@@ -117,6 +98,27 @@ describe('Get all stored shifts', function () {
     }, {dayname: 'Wednesday',
       "full_name": "Vuyokazi"
     }, {dayname: 'Thursday',
+      "full_name": "Vuyokazi"
+    }]);
+  })
+});
+
+describe('Select a shift', function () {
+  beforeEach(async function () {
+    await pool.query('DELETE FROM dayShifts');
+  });
+  it('should a shift based on  username and dayName', async function () {
+    let shift = {
+      username: 'Vee',
+      days: ["Monday", "Wednesday", "Thursday"]
+    }
+    await waiter.dayShift(shift);
+    assert.deepEqual(await waiter.allShifts(), [{
+      dayname: 'Monday',
+      "full_name": "Vuyokazi"}, {
+      dayname: 'Wednesday',
+      "full_name": "Vuyokazi"},
+      {dayname: 'Thursday',
       "full_name": "Vuyokazi"
     }]);
   })

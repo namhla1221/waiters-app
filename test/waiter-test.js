@@ -95,9 +95,9 @@ describe('Get all stored shifts', function () {
     assert.deepEqual(await waiter.allShifts(), [{
       dayname: 'Monday',
       "full_name": "Vuyokazi"
-    }, {dayname: 'Wednesday',
-      "full_name": "Vuyokazi"
     }, {dayname: 'Thursday',
+      "full_name": "Vuyokazi"
+    }, {dayname: 'Wednesday',
       "full_name": "Vuyokazi"
     }]);
   })

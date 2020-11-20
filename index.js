@@ -144,7 +144,6 @@ app.get('/days', async function (req, res, next) {
 app.get('/clear', async function (req, res, next)  {
     try {
         await waiter.clearShifts();
-        req.flash('info', 'You have deleted shift');
         res.redirect('days');
     } catch (error) {
         next(error)

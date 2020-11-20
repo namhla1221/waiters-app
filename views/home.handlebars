@@ -3,7 +3,7 @@
     <div class="logout"> <a href="/logout"><i class="fa fa-sign-out sign-out"></i></a></div>
 <div class="container dashboard">
     <h3 class="username">Hello,</h3><span>{{foundUser}}</span> 
-  
+ 
     <form action="/waiters/{{username}}" method="post">
         <table class="ui celled table" id="weekdays">
             <tbody>
@@ -30,5 +30,5 @@
         </table>
     </form>
 </div>
-
+ <input type="button" value="Back!" onclick="history.back()">
 <script src="../control.js"></script>

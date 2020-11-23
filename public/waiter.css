@@ -9,10 +9,23 @@ h1 {
 
  text-align: center;
  margin: 150px;
-padding: 150px;
-
+ padding: 150px;
 
 }
+.Thato{
+    text-align: center;
+}
+
+.namz {
+    text-align: center;
+}
+
+.sino{
+    text-align: center;
+    margin: 150px;
+    padding: 150px;
+}
+
 
 body {
     background-color: #DADADA;
@@ -76,14 +89,14 @@ footer {
 
 .username {
     font-size: 2rem;
-    color: #4CAF50;
+    color: black;
     display: inline-block;
     margin-right: 1rem;
 }
 
 span {
     font-size: 2rem;
-    color: #00b5ad;
+    color: black;
 }
 
 .column {

@@ -91,7 +91,7 @@ module.exports = Waiter = (pool) => {
                 shiftArray.forEach(current => {
                     if (current.day === storedShifts[i].dayname) {
                         current.Waiters.push(storedShifts[i].full_name);
-                    }if (current.Waiters.length === 2) {
+                    }if (current.Waiters.length === 1) {
                         current.colours = "orange";
                     }if (current.Waiters.length > 3) {
                         current.colours = "red";

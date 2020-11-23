@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const flash = require('express-flash');
 const session = require('express-session');
 const Waiter = require('./waiter.js');
+const waitersApp = require('./routes')
 
 
 const app = express();
@@ -37,7 +38,11 @@ const pool = new Pool({
     connectionString,
     // ssl: useSSL
 });
-let waiter = Waiter(pool);
+
+const waiter = Waiter(pool);
+const routeInst = waitersApp(waiter);
+
+// let waiter = Waiter(pool);
 
 app.use(bodyParser.urlencoded({
     extended: false
@@ -59,121 +64,29 @@ app.engine('handlebars', exphbs({
 
 app.set('view engine', 'handlebars');
 
-app.get('/', async function(req, res){
-    res.render('sigin');
-});
+app.get('/', routeInst.home)
 
-app.get('/logout', async function(req, res) {
-    res.render('sigin');
-});
+app.get('/logout', routeInst.logout)
 
 //this route is for sign-in with the username.
 //I t allows users to sign-in and choose job waiter if the user is waiter
-app.post('/sigin', async function(req, res) {
-    const { job_Type, siginUsername } = req.body;
-    let username = siginUsername;
-    try {
-        await logIn(username, job_Type,req,res);
-    } catch (error) {
-        next(error);
-    }
-});
+app.post('/sigin', routeInst.sigin)
 
 //this is the home page where the user is allowed to create username if it's their first time .
-const logIn = async function  (username, job_Type ,req,res){
-    let found = await waiter.foundUser(username, job_Type);
-    if (found === 'waiter') {
-        req.session.user_name = username;
-        res.redirect('/waiters/' + username);
-    } else if (found === 'Admin') {
-        res.redirect('days');
-    } else {
-        req.flash('error', ' Please enter your details');
-        res.redirect('/');
-    }
-}
 
-app.get('/waiters/:username', async function (req, res, next) {
-    try {
-        let username = req.params.username;
-        let foundUser = await waiter.getUsername(username);
-        let weekdays = await waiter.getdays(username);
-        res.render('home', {
-            daynames: weekdays,
-            username,
-            foundUser
-        });
-    } catch (error) {
-        next(error);
-    }
-})
+
+app.get('/waiters/:username', routeInst.username)
 
 //will allow users to select their shifts according to the days they willing to work 
-app.post('/waiters/:username', async function (req, res, next)  {
-    try {
-        let username = req.params.username;
-        let weekdays = await waiter.getdays(username);
-        if (weekdays != undefined || weekdays != [] &&
-            username != undefined || username != "") {
-            let shift = {
-                username: username,
-                days: Array.isArray(req.body.dayname) ? req.body.dayname : [req.body.dayname]
-            }
-            req.flash('info', 'Succesfully added shifts');
-            await waiter.dayShift(shift);
-            res.redirect('/waiters/' + username);
-        }
-
-    } catch (error) {
-        next(error);
-    }
-})
+app.post('/waiters/:username', routeInst.waiters)
 //this route is for admin to check the schedule of the waiters .
-app.get('/days', async function (req, res, next) {
-    try {
-        await waiter.getdays();
-        let storedShifts = await waiter.groupByDay();
-        res.render('days', {
-            storedShifts
-        });
-    } catch (error) {
-        next(error);
-    }
-})
+app.get('/days', routeInst.days)
 
-app.get('/clear', async function (req, res, next)  {
-    try {
-        await waiter.clearShifts();
-        res.redirect('days');
-    } catch (error) {
-        next(error)
-    }
-})
+app.get('/clear', routeInst.clear)
 
-app.get('/signup', async function (req, res, next){
-    try {
-        res.render('signup');
-    } catch (e) {
-        next(e);
-    }
-})
+app.get('/signup', routeInst.signup)
 
-app.post('/signup', async function (req, res, next){
-    try {
-        const { full_name, username, job_Type } = req.body;
-        if (full_name !== undefined && username !== undefined
-            && job_Type !== undefined && job_Type !== '') {
-            if (await waiter.add_waiter(username, full_name, job_Type)) {
-                req.flash('info', 'user is succesfully registered');
-            } 
-        }
-        // auto login
-        await logIn(username, job_Type,req,res);
-    } catch (e) {
-        next(e);
-    }
-});
-
+app.post('/signup', routeInst.sign)
 
 
 

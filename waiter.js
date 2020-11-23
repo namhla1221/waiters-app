@@ -16,7 +16,7 @@ module.exports = Waiter = (pool) => {
                 return found.rows[0].position;
              } 
             else {
-                return true;
+                return false;
             }
         }
     }

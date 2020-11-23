@@ -27,6 +27,8 @@ INSERT INTO waiterDB (username,full_name,position) VALUES ('Vee','Vuyokazi','wai
 INSERT INTO waiterDB (username,full_name,position) VALUES ('Sinono','Sinovuyo','waiter');
 INSERT INTO waiterDB (username,full_name,position) VALUES ('Njunju','Nwabisa','waiter');
 INSERT INTO waiterDB (username,full_name,position) VALUES ('Bomza','Bomkazi','waiter');
+INSERT INTO waiterDB (username,full_name,position) VALUES ('Namz','Namhla','admin');
+
 
 
 -- -- INSERT WEEKDAYS

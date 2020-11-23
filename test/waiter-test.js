@@ -64,7 +64,13 @@ describe('find a Waiter ', function () {
 it('should return  waiter',async function () {
   await waiter.add_waiter("Vee", "Vuyokazi", "waiter");
   let loginHas = await waiter.foundUser("Vee","waiter");
-  assert.equal(loginHas , "waiter");
+  assert.equal(loginHas , false);
+})
+
+it('should return  admin',async function () {
+  await waiter.add_waiter("Namz", "Namhla", "admin");
+  let loginHas = await admin.foundUser("Namz","admin");
+  assert.equal(loginHas , "admin");
 })
 });
 

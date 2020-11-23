@@ -67,11 +67,7 @@ it('should return  waiter',async function () {
   assert.equal(loginHas , false);
 })
 
-it('should return  admin',async function () {
-  await waiter.add_waiter("Namz", "Namhla", "admin");
-  let loginHas = await admin.foundUser("Namz","admin");
-  assert.equal(loginHas , "admin");
-})
+
 });
 
 
